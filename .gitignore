@@ -1,4 +1,39 @@
-# Operating System Files
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+package-lock.json
+yarn.lock
+
+# Testing
+coverage/
+.nyc_output/
+
+# Production Build Outputs
+dist/
+build/
+*.log
+*.log.*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS
 .DS_Store
 .DS_Store?
 ._*
@@ -8,56 +43,94 @@ ehthumbs.db
 Thumbs.db
 Desktop.ini
 
-# Editor Files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.project
-.settings/
-.classpath
+# Docker
+.dockerignore
+docker-compose.override.yml
 
-# Temporary Files
-*.log
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Prisma
+packages/backend/prisma/migrations/
+packages/backend/prisma/*.db
+
+# Build outputs
+dist/
+build/
+packages/frontend/dist/
+packages/backend/dist/
+packages/*/dist/
+**/dist/
+**/build/
+
+# TypeScript
+*.tsbuildinfo
+.tsbuildinfo
+
+# Temporary files
 *.tmp
 *.temp
-*.cache
-*.bak
-*.backup
-*~
+.cache/
+.temp/
 
-# Node Modules (if you add any build tools later)
-node_modules/
+# Logs
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 
-# Build Files (if you add any build process later)
-dist/
-build/
-.cache/
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
 
-# Environment Files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Optional npm cache directory
+.npm
 
-# Compressed Files
-*.zip
-*.rar
-*.7z
-*.tar.gz
+# Optional eslint cache
+.eslintcache
 
-# Large Files / Originals (keep optimized versions only)
-assets/images/**/*.psd
-assets/images/**/*.ai
-assets/images/**/original/
+# Optional REPL history
+.node_repl_history
 
-# Backup Files
-backup/
-old/
-*.old
+# Output of 'npm pack'
+*.tgz
 
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.parcel-cache
+
+# Next.js
+.next/
+out/
+
+# Nuxt.js
+.nuxt/
+
+# Vite
+.vite/
+
+# Rollup
+.rollup.cache/
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test

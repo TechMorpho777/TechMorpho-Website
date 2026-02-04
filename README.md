@@ -1,274 +1,158 @@
-# TechMorpho IT Solutions Website
+# TechMorpho IT Solutions - Monorepo
 
-A modern, professional multi-page website for TechMorpho IT Solutions with organized file structure and clean design.
+A modern, full-stack web application built with React (TypeScript), Node.js, Express, PostgreSQL, and Prisma ORM.
+
+## 🏗️ Architecture
+
+This is a monorepo containing:
+
+- **Frontend**: React.js with TypeScript, Vite
+- **Backend**: Node.js with Express and TypeScript
+- **Database**: PostgreSQL with Prisma ORM
+- **Deployment**: Docker containerized
 
 ## 📁 Project Structure
 
 ```
-tech/
-├── assets/
-│   ├── css/
-│   │   └── styles.css          # All website styles
-│   ├── js/
-│   │   └── script.js           # JavaScript functionality
-│   └── images/
-│       ├── logo/               # Company logos
-│       ├── services/           # Service icons
-│       ├── portfolio/          # Project screenshots
-│       ├── hero/               # Hero backgrounds
-│       ├── IMAGES-GUIDE.md     # Image guidelines
-│       └── favicon.ico         # Website favicon
-├── index.html                  # Home page
-├── services.html               # Services page
-├── portfolio.html              # Portfolio page
-├── about.html                  # About us page
-├── contact.html                # Contact page
-└── README.md                   # This file
+.
+├── packages/
+│   ├── frontend/          # React TypeScript frontend
+│   ├── backend/           # Express TypeScript backend
+│   └── shared/            # Shared types and utilities
+├── docker-compose.yml     # Docker orchestration
+├── Dockerfile             # Docker configuration
+└── package.json          # Root workspace configuration
 ```
 
-## 🚀 Features
+## 🚀 Quick Start
 
-### Pages
-- ✅ **Home** - Hero section, services preview, stats
-- ✅ **Services** - Detailed service information (6 services)
-- ✅ **Portfolio** - Project showcase with filtering (9 sample projects)
-- ✅ **About** - Company info, values, track record
-- ✅ **Contact** - Contact form, business hours, location
+### Prerequisites
 
-### Technical Features
-- Fully responsive design (mobile, tablet, desktop)
-- SEO optimized with meta tags
-- Clean, professional animations
-- Portfolio filtering system
-- Mobile-friendly navigation
-- Contact form ready
-- Fast loading performance
-- Cross-browser compatible
+- Node.js >= 18.0.0
+- PostgreSQL (or Docker for containerized setup)
+- npm >= 9.0.0
 
-## 🎨 Getting Started
+### Development Setup
 
-### 1. Basic Setup
-Simply open `index.html` in your web browser to view the website.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 2. Adding Images
-See `assets/images/IMAGES-GUIDE.md` for detailed instructions on:
-- Where to place images
-- Recommended sizes and formats
-- How to optimize images
-- Free image resources
+2. **Set up database:**
+   ```bash
+   docker-compose up -d postgres
+   ```
 
-Quick start:
-```
-assets/images/
-├── logo/logo.png              # Add your logo here
-├── portfolio/project-01.jpg   # Add project screenshots
-└── favicon.ico                # Add your favicon
-```
+3. **Run migrations and create admin:**
+   ```bash
+   cd packages/backend
+   npx prisma generate
+   npx prisma migrate dev --name init
+   npm run setup-admin
+   ```
 
-### 3. Customization
+4. **Start development servers:**
+   ```bash
+   npm run dev
+   ```
 
-#### Colors
-Edit CSS variables in `assets/css/styles.css`:
-```css
-:root {
-    --primary-color: #6366f1;    /* Main brand color */
-    --primary-dark: #4f46e5;     /* Darker shade */
-    --secondary-color: #06b6d4;  /* Accent color */
-}
-```
+   This will start:
+   - Frontend: http://localhost:5173
+   - Backend: http://localhost:3000
+   - Admin: http://localhost:5173/admin/login
 
-#### Contact Information
-Update in `contact.html`:
-- Email addresses
-- Phone numbers
-- Physical address
-- Business hours
+### Admin Login
 
-#### Company Name
-Find and replace "TechMorpho" with your company name across all HTML files.
+After running the setup, you'll need to create an admin user. See [SETUP_ADMIN.md](./SETUP_ADMIN.md) for instructions.
 
-#### Portfolio Projects
-Edit `portfolio.html` to add your real projects:
-- Update project titles and descriptions
-- Change technology tags
-- Add real project images
+### Production Deployment
 
-## 📱 Responsive Design
+For production deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
-The website automatically adjusts for:
-- 📱 Mobile phones (320px+)
-- 📱 Tablets (768px+)
-- 💻 Laptops (1024px+)
-- 🖥️ Desktops (1440px+)
-
-## 🌐 Deployment Options
-
-### Easy Deployment (Drag & Drop):
-1. **Netlify** - netlify.com (Free)
-2. **Vercel** - vercel.com (Free)
-3. **GitHub Pages** - pages.github.com (Free)
-
-### Traditional Hosting:
-1. Upload all files via FTP
-2. Point your domain to the hosting
-3. Done!
-
-### Before Deployment Checklist:
-- [ ] Replace all placeholder content
-- [ ] Add your company logo
-- [ ] Add real portfolio images
-- [ ] Update contact information
-- [ ] Add favicon
-- [ ] Test all pages and links
-- [ ] Optimize all images
-- [ ] Update meta tags with your info
-
-## 🔧 Making the Contact Form Work
-
-The form currently shows an alert. To make it functional:
-
-### Option 1: Use a Form Service (Easiest)
-- **Formspree** (formspree.io) - Free for 50 submissions/month
-- **EmailJS** (emailjs.com) - Send emails from JavaScript
-- **Netlify Forms** (if hosted on Netlify)
-- **Google Forms** - Embed a Google Form
-
-### Option 2: Backend Integration
-Uncomment the fetch code in `assets/js/script.js` and create a backend API.
-
-## 📦 What's Included
-
-### HTML Files (5 pages)
-- Semantic HTML5 markup
-- SEO-friendly structure
-- Accessibility features
-- Clean, readable code
-
-### CSS (assets/css/styles.css)
-- Modern CSS3 features
-- Flexbox & Grid layouts
-- CSS Variables for easy customization
-- Smooth transitions
-- Mobile-first approach
-
-### JavaScript (assets/js/script.js)
-- Mobile menu toggle
-- Portfolio filtering
-- Form handling
-- Smooth scrolling
-- Active navigation highlighting
-
-## 🎯 Services Included
-
-1. **Website Development** - WordPress & Custom sites
-2. **Desktop/Web Applications** - Flutter & Electron apps
-3. **SEO & Digital Marketing** - Search optimization & ads
-4. **Graphic Design** - Logos, branding, social media
-5. **Web Hosting & Maintenance** - Hosting, SSL, backups
-6. **QA & Security Testing** - Testing & vulnerability reports
-
-## 📸 Adding Real Images
-
-### Portfolio Images
-1. Take screenshots of your projects
-2. Resize to 1200x800px
-3. Optimize/compress them
-4. Save as `project-01.jpg`, `project-02.jpg`, etc.
-5. Place in `assets/images/portfolio/`
-6. Update `portfolio.html`:
-```html
-<div class="portfolio-image">
-    <img src="assets/images/portfolio/project-01.jpg" alt="Project Name">
-</div>
+**Quick production build:**
+```bash
+npm run build
+npm start
 ```
 
-### Logo
-1. Create/export your logo as PNG
-2. Size: ~200x60px (or maintain aspect ratio)
-3. Save as `logo.png` in `assets/images/logo/`
-4. Update navigation in all HTML files:
-```html
-<a href="index.html" class="logo">
-    <img src="assets/images/logo/logo.png" alt="TechMorpho">
-</a>
+## 🐳 Docker Deployment
+
+### Build and run with Docker Compose:
+
+```bash
+docker-compose up -d
 ```
 
-## ✅ Browser Support
+This will:
+- Build frontend and backend containers
+- Start PostgreSQL database
+- Run all services
 
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+### Access:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:3000
+- Database: localhost:5432
 
-## 🛠️ Troubleshooting
+## 📦 Packages
 
-### Images not showing?
-- Check file paths are correct
-- Ensure images are in the right folders
-- Check file extensions (.jpg, .png, etc.)
+### Frontend (`packages/frontend`)
+- React 18 with TypeScript
+- Vite for fast development
+- Modern UI with enhanced design
+- Responsive and optimized
 
-### CSS not loading?
-- Clear browser cache
-- Check `assets/css/styles.css` path
-- Open browser console for errors
+### Backend (`packages/backend`)
+- Express.js with TypeScript
+- Prisma ORM
+- RESTful API
+- Contact form handling
 
-### Form not working?
-- Check `assets/js/script.js` is loaded
-- Integrate with a form service (see above)
-- Check browser console for errors
+### Shared (`packages/shared`)
+- Shared TypeScript types
+- Common utilities
 
-## 📝 Maintenance Tips
+## 🛠️ Scripts
 
-1. **Regular Updates**
-   - Keep content fresh
-   - Update portfolio regularly
-   - Add new blog posts or case studies
+- `npm run dev` - Start all services in development mode
+- `npm run build` - Build all packages for production
+- `npm run start` - Start production server
+- `npm run lint` - Lint all packages
 
-2. **Image Optimization**
-   - Always compress images before upload
-   - Use WebP format for better compression
-   - Consider lazy loading for better performance
+## 📝 Environment Variables
 
-3. **SEO**
-   - Update meta descriptions regularly
-   - Add new keywords as needed
-   - Keep sitemap updated
+See `packages/backend/env.example` for required environment variables.
 
-## 🎓 Learn More
+For detailed setup instructions, see [SETUP.md](./SETUP.md)
 
-### Free Resources:
-- **HTML/CSS** - MDN Web Docs (developer.mozilla.org)
-- **JavaScript** - JavaScript.info
-- **Web Design** - Awwwards.com for inspiration
-- **SEO** - Google Search Central
+## 🎨 Features
 
-## 📞 Support
+- ✅ Modern, responsive design
+- ✅ Fast performance with code splitting
+- ✅ Type-safe with TypeScript
+- ✅ Docker containerized
+- ✅ PostgreSQL database
+- ✅ Contact form with backend integration
+- ✅ SEO optimized
+- ✅ Mobile-first design
+- ✅ **Admin Dashboard** - Manage services, enquiries, and settings
+- ✅ **Sitemap Generation** - Automatic XML sitemap generation
+- ✅ **Google Tag Manager** - Easy GTM and Analytics integration
+- ✅ **Enquiry Management** - Track and manage all contact form submissions
 
-For questions about customization or deployment, refer to:
-- `assets/images/IMAGES-GUIDE.md` - Image help
-- Individual folder README files
-- Online documentation
+## 🔐 Admin Dashboard
+
+Access the admin dashboard at `/admin/login`
+
+**Features:**
+- Service management (CRUD operations)
+- Enquiry management with status tracking
+- Settings management (SEO, Analytics, Sitemap)
+- Google Tag Manager integration
+- Sitemap generation
+
+See [ADMIN_GUIDE.md](./ADMIN_GUIDE.md) for detailed admin documentation.
 
 ## 📄 License
 
 © 2025 TechMorpho IT Solutions. All rights reserved.
-
----
-
-## 🚀 Quick Start Commands
-
-### To view locally:
-1. Simply open `index.html` in your browser
-2. No server required for basic viewing
-
-### To deploy:
-1. Compress entire `tech` folder
-2. Upload to your hosting provider
-3. Or drag folder to Netlify/Vercel
-
----
-
-**Ready to go live?** Replace placeholder content, add your images, and deploy!
-
-Need help? Check the guides in `assets/images/` folder or contact your developer.

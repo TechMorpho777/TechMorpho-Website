@@ -1,0 +1,31 @@
+{
+  "name": "techmorpho-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TechMorpho IT Solutions - Full-stack monorepo application",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "npm run dev --workspace=packages/frontend",
+    "dev:backend": "npm run dev --workspace=packages/backend",
+    "build": "npm run build --workspace=packages/frontend && npm run build --workspace=packages/backend",
+    "start": "npm run start --workspace=packages/backend",
+    "lint": "npm run lint --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "setup:admin": "npm run setup-admin --workspace=packages/backend",
+    "clean": "npm run clean:build",
+    "clean:build": "node scripts/clean-build.js",
+    "clean:modules": "node scripts/clean-modules.js",
+    "clean:all": "npm run clean:build && npm run clean:modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
+
