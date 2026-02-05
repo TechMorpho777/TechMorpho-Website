@@ -32,9 +32,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    volumes:
-      - ./packages/backend:/app
-      - /app/node_modules
+    # Volumes removed for production - built files are in the container
 
   frontend:
     build:
@@ -42,12 +40,10 @@ services:
       dockerfile: Dockerfile
     container_name: techmorpho-frontend
     ports:
-      - "5173:5173"
+      - "80:80"
     depends_on:
       - backend
-    volumes:
-      - ./packages/frontend:/app
-      - /app/node_modules
+    # Volumes removed for production - built files are in the container
 
 volumes:
   postgres_data:
