@@ -6,7 +6,7 @@ echo "🚀 Starting TechMorpho Backend..."
 # Wait for database to be ready (simple connection test)
 echo "⏳ Waiting for database to be ready..."
 RETRIES=30
-until npx prisma db execute --stdin <<< "SELECT 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
+until echo "SELECT 1" | npx prisma db execute --stdin > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
   echo "   Database not ready, waiting 2 seconds... ($RETRIES retries left)"
   RETRIES=$((RETRIES-1))
   sleep 2
