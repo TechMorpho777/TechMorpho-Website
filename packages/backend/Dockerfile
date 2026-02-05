@@ -1,7 +1,12 @@
 FROM node:18-alpine
 
 # Install build dependencies and OpenSSL for Prisma
-RUN apk add --no-cache python3 make g++ openssl1.1-compat
+# Add edge repository temporarily for openssl1.1-compat, then remove it
+RUN apk add --no-cache python3 make g++ && \
+    apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main openssl1.1-compat || \
+    (apk add --no-cache openssl openssl-dev && \
+     ln -s /usr/lib/libssl.so.3 /usr/lib/libssl.so.1.1 2>/dev/null || true && \
+     ln -s /usr/lib/libcrypto.so.3 /usr/lib/libcrypto.so.1.1 2>/dev/null || true)
 
 WORKDIR /app
 
