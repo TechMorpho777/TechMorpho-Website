@@ -8,8 +8,7 @@ services:
       POSTGRES_USER: techmorpho
       POSTGRES_PASSWORD: techmorpho123
       POSTGRES_DB: techmorpho
-    ports:
-      - "5432:5432"
+    # Ports removed - services communicate via Docker network
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -27,8 +26,7 @@ services:
       DATABASE_URL: postgresql://techmorpho:techmorpho123@postgres:5432/techmorpho?schema=public
       PORT: 3000
       NODE_ENV: production
-    ports:
-      - "3000:3000"
+    # Ports removed - Coolify handles reverse proxy routing
     depends_on:
       postgres:
         condition: service_healthy
@@ -39,8 +37,7 @@ services:
       context: ./packages/frontend
       dockerfile: Dockerfile
     container_name: techmorpho-frontend
-    ports:
-      - "80:80"
+    # Ports removed - Coolify handles reverse proxy routing
     depends_on:
       - backend
     # Volumes removed for production - built files are in the container
