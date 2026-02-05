@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: techmorpho-postgres
+    environment:
+      POSTGRES_USER: techmorpho
+      POSTGRES_PASSWORD: techmorpho123
+      POSTGRES_DB: techmorpho
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U techmorpho"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./packages/backend
+      dockerfile: Dockerfile
+    container_name: techmorpho-backend
+    environment:
+      DATABASE_URL: postgresql://techmorpho:techmorpho123@postgres:5432/techmorpho?schema=public
+      PORT: 3000
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./packages/backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./packages/frontend
+      dockerfile: Dockerfile
+    container_name: techmorpho-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./packages/frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
+
