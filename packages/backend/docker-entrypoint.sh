@@ -21,10 +21,16 @@ echo "✅ Database is ready!"
 
 # Run migrations
 echo "📦 Running database migrations..."
-npx prisma migrate deploy || {
-  echo "⚠️  Migration deploy failed, this is normal on first run"
-  echo "   Tables will be created when migrations are available"
-}
+if [ -d "prisma/migrations" ] && [ "$(ls -A prisma/migrations)" ]; then
+  echo "   Found migrations, deploying..."
+  npx prisma migrate deploy || {
+    echo "⚠️  Migration deploy failed, trying db push as fallback..."
+    npx prisma db push --accept-data-loss || echo "⚠️  Database setup failed"
+  }
+else
+  echo "   No migrations found, using db push for initial setup..."
+  npx prisma db push --accept-data-loss || echo "⚠️  Database setup failed"
+fi
 
 # Try to create admin user (will skip if already exists)
 echo "👤 Setting up admin user..."
