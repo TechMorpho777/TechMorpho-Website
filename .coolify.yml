@@ -1,0 +1,66 @@
+# Coolify Configuration File
+# This file provides hints to Coolify about your project structure
+
+version: '1.0'
+
+# Project information
+name: TechMorpho Website
+description: Full-stack website with React frontend and Node.js backend
+
+# Services configuration
+services:
+  backend:
+    dockerfile: packages/backend/Dockerfile
+    context: packages/backend
+    port: 3000
+    environment:
+      - DATABASE_URL
+      - PORT=3000
+      - NODE_ENV=production
+      - BASE_URL
+      - JWT_SECRET
+    healthcheck:
+      path: /api/health
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    dockerfile: packages/frontend/Dockerfile
+    context: packages/frontend
+    port: 80
+    environment:
+      - VITE_API_URL
+    depends_on:
+      - backend
+
+# Database requirements
+database:
+  type: postgresql
+  version: 15
+  name: techmorpho
+
+# Build instructions
+build:
+  backend:
+    steps:
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      - name: Build TypeScript
+        run: npm run build
+
+  frontend:
+    steps:
+      - name: Install dependencies
+        run: npm ci
+      - name: Build React app
+        run: npm run build
+
+# Post-deployment commands
+post_deploy:
+  backend:
+    - npx prisma migrate deploy
+    - npm run setup-admin || true  # Run setup-admin if not already done
+
