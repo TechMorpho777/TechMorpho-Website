@@ -72,6 +72,9 @@ router.get('/', async (req: Request, res: Response) => {
  */
 router.get('/:slug', async (req: Request, res: Response) => {
   try {
+    // Test database connection first
+    await prisma.$connect()
+    
     const service = await prisma.service.findFirst({
       where: {
         slug: req.params.slug,
@@ -84,8 +87,17 @@ router.get('/:slug', async (req: Request, res: Response) => {
     }
 
     res.json({ success: true, data: service })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching service:', error)
+    
+    // Provide more specific error messages
+    if (error.code === 'P1001' || error.message?.includes('Can\'t reach database')) {
+      return res.status(503).json({ 
+        success: false, 
+        message: 'Database connection failed. Please check your database configuration.' 
+      })
+    }
+    
     res.status(500).json({ success: false, message: 'Internal server error' })
   }
 })

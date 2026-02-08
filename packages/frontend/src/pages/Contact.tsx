@@ -187,7 +187,7 @@ const Contact = () => {
                 </div>
                 <h3>Why Choose Us?</h3>
                 <ul className="trust-list">
-                  <li>✓ 24/7 Support Available</li>
+                 {/* <li>✓ 24/7 Support Available</li> */}
                   <li>✓ Quick Response Time</li>
                   <li>✓ Expert Team</li>
                   <li>✓ Free Consultation</li>

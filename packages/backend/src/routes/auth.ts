@@ -5,7 +5,17 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 const router = express.Router()
-const prisma = new PrismaClient()
+let prisma: PrismaClient
+try {
+  prisma = new PrismaClient({
+    log: ['error', 'warn'],
+    errorFormat: 'pretty',
+  })
+} catch (error) {
+  console.error('[FATAL] Failed to initialize PrismaClient:', error)
+  throw error
+}
+
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production'
 
 /**
@@ -60,6 +70,17 @@ router.post('/login', [
     }
 
     const { email, password } = req.body
+
+    // Test database connection first
+    try {
+      await prisma.$connect()
+    } catch (dbError: any) {
+      console.error('Database connection error:', dbError)
+      return res.status(503).json({ 
+        success: false, 
+        message: 'Database connection failed. Please check your DATABASE_URL environment variable and ensure the database is running.' 
+      })
+    }
 
     const admin = await prisma.admin.findUnique({
       where: { email }

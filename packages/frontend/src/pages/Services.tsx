@@ -72,41 +72,25 @@ const Services = () => {
         defaultTitle="Our Services - TechMorpho IT Solutions"
         defaultDescription="Comprehensive IT solutions tailored to your business needs. Website development, web applications, digital marketing, and more."
       />
-      <section className="services-hero">
+      {/* Hero Section */}
+      <section className="about-hero-modern">
         <div className="container">
-          <div className="services-hero-content">
-            <span className="hero-badge">🎯 Professional IT Solutions</span>
-            <h1 className="page-title-large">Transform Your Business with Our Expert Services</h1>
-            <p className="hero-description">
-              From stunning websites to powerful applications, we deliver comprehensive IT solutions that drive growth and innovation. Choose excellence, choose TechMorpho.
-            </p>
-            <div className="hero-cta-buttons">
-              <Link to="/contact" className="btn btn-primary btn-large">Get Started Now</Link>
-              <a href="#services" className="btn btn-secondary btn-large">Explore Services ↓</a>
-            </div>
-            <div className="trust-badges">
-              <div className="badge-item">
-                <span className="badge-icon">✓</span>
-                <span>100+ Projects</span>
-              </div>
-              <div className="badge-item">
-                <span className="badge-icon">⭐</span>
-                <span>5-Star Rated</span>
-              </div>
-              <div className="badge-item">
-                <span className="badge-icon">🚀</span>
-                <span>Fast Delivery</span>
-              </div>
+          <div className="about-hero-content-modern">
+            <div className="hero-badge-modern">Our Services</div>
+            <h1 className="hero-title-modern">Transform Your Business with Expert IT Solutions</h1>
+            <div className="hero-text-modern">
+              <p>From stunning websites to powerful applications, we deliver comprehensive IT solutions that drive growth and innovation. Choose excellence, choose TechMorpho.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="services-modern" id="services">
+      {/* Services Section */}
+      <section className="about-section-modern about-section-alt" id="services">
         <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Our Core Services</h2>
-            <p className="section-subtitle">Choose the perfect solution for your business needs</p>
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Our Core Services</h2>
+            <p className="section-subtitle-modern">Choose the perfect solution for your business needs</p>
           </div>
 
           {loading && (
@@ -172,96 +156,124 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="why-choose-section">
+      {/* Why Choose Section */}
+      <section className="about-section-modern">
         <div className="container">
-          <div className="why-choose-content-centered">
-            <h2 className="section-title">Why Businesses Choose TechMorpho</h2>
-            <p className="why-description">
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Why Businesses Choose TechMorpho</h2>
+            <p className="section-subtitle-modern">Your Strategic Technology Partners</p>
+          </div>
+          <div className="about-content-modern">
+            <p className="about-text-modern">
               We're not just service providers – we're your strategic technology partners committed to your success.
             </p>
-            <div className="why-features">
-              <div className="why-feature">
-                <div className="why-icon">🎯</div>
-                <div>
-                  <h4>Expert Team</h4>
-                  <p>Skilled professionals with years of experience</p>
+          </div>
+
+          <div className="why-choose-grid-modern">
+            <div className="why-choose-card-modern">
+              <div className="why-choose-icon-wrapper">
+                <div className="why-choose-icon-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                  </svg>
                 </div>
               </div>
-              <div className="why-feature">
-                <div className="why-icon">⚡</div>
-                <div>
-                  <h4>Fast Delivery</h4>
-                  <p>Quick turnaround without compromising quality</p>
+              <h4 className="why-choose-title">Expert Team</h4>
+              <p className="why-choose-description">Skilled professionals with years of experience</p>
+            </div>
+            <div className="why-choose-card-modern">
+              <div className="why-choose-icon-wrapper">
+                <div className="why-choose-icon-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
                 </div>
               </div>
-              <div className="why-feature">
-                <div className="why-icon">💰</div>
-                <div>
-                  <h4>Affordable Pricing</h4>
-                  <p>Transparent pricing that fits your budget</p>
+              <h4 className="why-choose-title">Fast Delivery</h4>
+              <p className="why-choose-description">Quick turnaround without compromising quality</p>
+            </div>
+            <div className="why-choose-card-modern">
+              <div className="why-choose-icon-wrapper">
+                <div className="why-choose-icon-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                  </svg>
                 </div>
               </div>
-              <div className="why-feature">
-                <div className="why-icon">🤝</div>
-                <div>
-                  <h4>24/7 Support</h4>
-                  <p>Round-the-clock assistance when you need it</p>
+              <h4 className="why-choose-title">Affordable Pricing</h4>
+              <p className="why-choose-description">Transparent pricing that fits your budget</p>
+            </div>
+            <div className="why-choose-card-modern">
+              <div className="why-choose-icon-wrapper">
+                <div className="why-choose-icon-bg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
                 </div>
               </div>
+              <h4 className="why-choose-title">24/7 Support</h4>
+              <p className="why-choose-description">Round-the-clock assistance when you need it</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="process-section">
+      {/* Process Section */}
+      <section className="about-section-modern about-section-alt">
         <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Our Simple Process</h2>
-            <p className="section-subtitle">From concept to completion in 4 easy steps</p>
+          <div className="section-header-modern">
+            <h2 className="section-title-modern">Our Simple Process</h2>
+            <p className="section-subtitle-modern">From concept to completion in 4 easy steps</p>
           </div>
-          <div className="process-grid">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <div className="step-icon">📋</div>
-              <h3>Discuss</h3>
-              <p>Tell us about your project and goals</p>
-            </div>
-            <div className="process-arrow">→</div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <div className="step-icon">🎨</div>
-              <h3>Design</h3>
-              <p>We create a customized solution plan</p>
-            </div>
-            <div className="process-arrow">→</div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <div className="step-icon">⚙️</div>
-              <h3>Develop</h3>
-              <p>Expert team brings your vision to life</p>
-            </div>
-            <div className="process-arrow">→</div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <div className="step-icon">🚀</div>
-              <h3>Deliver</h3>
-              <p>Launch and ongoing support</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta">
-        <div className="container">
-          <div className="cta-content">
-            <h2 className="cta-title">Ready to Start Your Project?</h2>
-            <p className="cta-text">
-              Get a free consultation and discover how we can help transform your business with our expert IT solutions.
+          <div className="about-content-modern">
+            <p className="about-text-modern">
+              We follow a structured approach to ensure your project is delivered on time and exceeds expectations.
             </p>
-            <div className="cta-buttons">
-              <Link to="/contact" className="btn btn-large">Get Free Consultation</Link>
-              <a href="https://wa.me/15551234567" className="btn btn-whatsapp btn-large" target="_blank" rel="noopener noreferrer">💬 WhatsApp Us</a>
+          </div>
+
+          <div className="approach-timeline">
+            <div className="approach-step-card">
+              <div className="approach-step-header">
+                <div className="approach-step-number">01</div>
+                <h4 className="approach-step-title">Discuss</h4>
+              </div>
+              <p className="approach-step-description">Tell us about your project and goals</p>
             </div>
+            <div className="approach-step-card">
+              <div className="approach-step-header">
+                <div className="approach-step-number">02</div>
+                <h4 className="approach-step-title">Design</h4>
+              </div>
+              <p className="approach-step-description">We create a customized solution plan</p>
+            </div>
+            <div className="approach-step-card">
+              <div className="approach-step-header">
+                <div className="approach-step-number">03</div>
+                <h4 className="approach-step-title">Develop</h4>
+              </div>
+              <p className="approach-step-description">Expert team brings your vision to life</p>
+            </div>
+            <div className="approach-step-card">
+              <div className="approach-step-header">
+                <div className="approach-step-number">04</div>
+                <h4 className="approach-step-title">Deliver</h4>
+              </div>
+              <p className="approach-step-description">Launch and ongoing support</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="about-section-modern">
+        <div className="container">
+          <div className="about-cta-modern">
+            <p className="about-cta-text">
+              Ready to start your project? Get a free consultation and discover how we can help transform your business with our expert IT solutions.
+            </p>
+            <Link to="/contact" className="btn btn-large btn-primary-modern">Get Free Consultation</Link>
           </div>
         </div>
       </section>

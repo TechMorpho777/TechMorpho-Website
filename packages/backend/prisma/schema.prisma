@@ -32,17 +32,24 @@ model Service {
   title       String
   slug        String   @unique
   description String
+  content     String?  @db.Text // Legacy rich text content (kept for backward compatibility)
+  sections    Json?    // Array of content sections with title and content
+  heroBanner  Json?    // Hero banner data: { title, subtitle, image, showBreadcrumb }
   icon        String?  // SVG path or icon name
   features    String[] // Array of features
   tag         String?  // Popular, Trending, etc.
+  category    String?  // Optional category for grouping services
   featured    Boolean  @default(false)
   order       Int      @default(0)
   active      Boolean  @default(true)
+  showInNav   Boolean  @default(false) // Control if service appears in navigation
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@index([slug])
   @@index([active])
+  @@index([category])
+  @@index([showInNav])
 }
 
 model Admin {

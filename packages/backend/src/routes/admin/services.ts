@@ -123,7 +123,7 @@ router.post('/', [
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { title, slug, description, icon, features, tag, featured, order, active } = req.body
+    const { title, slug, description, content, sections, heroBanner, icon, features, tag, category, featured, order, active, showInNav } = req.body
 
     // Check if slug already exists
     const existing = await prisma.service.findUnique({
@@ -139,12 +139,17 @@ router.post('/', [
         title,
         slug,
         description,
+        content: content || null,
+        sections: sections || null,
+        heroBanner: heroBanner || null,
         icon: icon || null,
         features: features || [],
         tag: tag || null,
+        category: category || null,
         featured: featured || false,
         order: order || 0,
-        active: active !== undefined ? active : true
+        active: active !== undefined ? active : true,
+        showInNav: showInNav !== undefined ? showInNav : false
       }
     })
 
@@ -167,7 +172,7 @@ router.put('/:id', [
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const { title, slug, description, icon, features, tag, featured, order, active } = req.body
+    const { title, slug, description, content, sections, heroBanner, icon, features, tag, category, featured, order, active, showInNav } = req.body
 
     // Check if service exists
     const existing = await prisma.service.findUnique({
@@ -194,19 +199,25 @@ router.put('/:id', [
         title,
         slug,
         description,
+        content: content !== undefined ? content : existing.content,
+        sections: sections !== undefined ? sections : existing.sections,
+        heroBanner: heroBanner !== undefined ? (heroBanner || null) : existing.heroBanner,
         icon: icon || null,
         features: features || [],
         tag: tag || null,
+        category: category !== undefined ? category : existing.category,
         featured: featured !== undefined ? featured : existing.featured,
         order: order !== undefined ? order : existing.order,
-        active: active !== undefined ? active : existing.active
+        active: active !== undefined ? active : existing.active,
+        showInNav: showInNav !== undefined ? showInNav : existing.showInNav
       }
     })
 
     res.json({ success: true, data: service })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error updating service:', error)
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    const errorMessage = error?.message || 'Internal server error'
+    res.status(500).json({ success: false, message: errorMessage })
   }
 })
 

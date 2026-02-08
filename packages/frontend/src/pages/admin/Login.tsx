@@ -20,7 +20,14 @@ const Login = () => {
       await login(email, password)
       navigate('/admin/dashboard')
     } catch (err: any) {
-      setError(err.message || 'Login failed. Please check your credentials.')
+      // Provide more helpful error messages
+      let errorMsg = err.message || 'Login failed. Please check your credentials.'
+      if (err.message?.includes('Failed to fetch') || err.message?.includes('network')) {
+        errorMsg = 'Cannot connect to server. Please ensure the backend is running on port 3000.'
+      } else if (err.message?.includes('503')) {
+        errorMsg = 'Backend server is starting up. Please wait a moment and try again.'
+      }
+      setError(errorMsg)
     } finally {
       setLoading(false)
     }

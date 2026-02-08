@@ -21,23 +21,36 @@ export default defineConfig({
         timeout: 30000,
         rewrite: (path) => path,
         configure: (proxy, _options) => {
-          // Handle errors before they reach Vite's logger
+          // Suppress ECONNREFUSED errors in console
+          const originalError = console.error;
+          let errorSuppressed = false;
+          
           proxy.on('proxyReq', (proxyReq, req, res) => {
-            // Set up error handler on the request to catch ECONNREFUSED early
             proxyReq.on('error', (err: any) => {
-              if (err.code === 'ECONNREFUSED' && res && !res.headersSent) {
-                res.writeHead(503, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ error: 'Service temporarily unavailable. Backend is starting up. Please retry.' }));
+              if (err.code === 'ECONNREFUSED') {
+                if (res && !res.headersSent) {
+                  res.writeHead(503, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ 
+                    success: false,
+                    error: 'Backend server is not running. Please start the backend server on port 3000.' 
+                  }));
+                }
+                errorSuppressed = true;
+                return;
               }
             });
           });
           
-          proxy.on('error', (err, req, res) => {
-            // Handle ECONNREFUSED silently - it's expected during startup
-            if (err.code === 'ECONNREFUSED' && res && !res.headersSent) {
-              res.writeHead(503, { 'Content-Type': 'application/json' });
-              res.end(JSON.stringify({ error: 'Service temporarily unavailable. Backend is starting up. Please retry.' }));
-              // Don't log or propagate the error - it's handled gracefully
+          proxy.on('error', (err: any, req: any, res: any) => {
+            if (err.code === 'ECONNREFUSED') {
+              if (res && !res.headersSent) {
+                res.writeHead(503, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ 
+                  success: false,
+                  error: 'Backend server is not running. Please start the backend server on port 3000.' 
+                }));
+              }
+              // Suppress the error from being logged
               return;
             }
             // Only log non-ECONNREFUSED errors

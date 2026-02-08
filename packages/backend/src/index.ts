@@ -20,8 +20,8 @@ const prisma = new PrismaClient()
 
 // Middleware
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 // Public Routes
 app.use('/api/contact', contactRoutes)
@@ -98,6 +98,13 @@ app.get('/api/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`)
+  console.log(`📊 Health check: http://localhost:${PORT}/api/health`)
+}).on('error', (err: any) => {
+  console.error('❌ Server failed to start:', err.message)
+  if (err.code === 'EADDRINUSE') {
+    console.error(`   Port ${PORT} is already in use. Please stop the other process or change the PORT.`)
+  }
+  process.exit(1)
 })
 
 export default app
