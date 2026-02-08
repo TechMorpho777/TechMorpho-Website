@@ -757,7 +757,7 @@ const Services = () => {
                     <ReactQuill
                       theme="snow"
                       value={formData.content}
-                      onChange={(value) => {
+                      onChange={(value: string) => {
                         setFormData(prev => ({ ...prev, content: value }))
                       }}
                       modules={{
@@ -832,7 +832,7 @@ const Services = () => {
                             <ReactQuill
                               theme="snow"
                               value={section.content}
-                              onChange={(value) => {
+                              onChange={(value: string) => {
                                 updateSection(section.id, 'content', value)
                               }}
                               modules={{
