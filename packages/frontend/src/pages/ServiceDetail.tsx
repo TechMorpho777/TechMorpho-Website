@@ -273,23 +273,21 @@ const ServiceDetail = () => {
               )}
 
               {/* Features Section */}
-              <div style={{
-                background: 'white',
-                padding: '2rem',
-                borderRadius: '12px',
-                border: '1px solid #e5e7eb',
-                marginBottom: '2rem',
-                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-              }}>
-                <div className="section-header-modern" style={{ marginBottom: '1.5rem' }}>
-                  <h2 className="section-title-modern" style={{ fontSize: '1.75rem', marginBottom: '0.5rem' }}>What's Included</h2>
-                  <p className="section-subtitle-modern" style={{ fontSize: '1rem' }}>Everything you need for success</p>
+              <div className="included-section-wrapper">
+                <div className="section-header-modern" style={{ marginBottom: '2rem', textAlign: 'center' }}>
+                  <h2 className="section-title-modern" style={{ fontSize: '2rem', marginBottom: '0.75rem', fontWeight: '800' }}>What's Included</h2>
+                  <p className="section-subtitle-modern" style={{ fontSize: '1.125rem', color: 'var(--text-secondary)' }}>Everything you need for success</p>
                 </div>
-                <div className="services-grid-modern" style={{ marginTop: '1.5rem' }}>
+                <div className="included-features-grid">
                   {service.features.map((feature, index) => (
-                    <div key={index} className="service-card-about">
-                      <div className="service-card-number">{String(index + 1).padStart(2, '0')}</div>
-                      <h4 className="service-card-title">{feature}</h4>
+                    <div key={index} className="included-feature-card">
+                      <div className="feature-card-content">
+                        <div className="feature-content-inline">
+                          <div className="feature-number-badge">{String(index + 1).padStart(2, '0')}</div>
+                          <h4 className="feature-card-title">{feature}</h4>
+                        </div>
+                      </div>
+                      <div className="feature-card-glow"></div>
                     </div>
                   ))}
                 </div>

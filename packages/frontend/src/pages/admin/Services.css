@@ -790,6 +790,31 @@ td code {
 .editor-wrapper .ql-editor {
   min-height: 300px;
   padding: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Remove excessive spacing from empty paragraphs in editor */
+.editor-wrapper .ql-editor p {
+  margin: 0.5rem 0;
+}
+
+.editor-wrapper .ql-editor p:empty {
+  margin: 0;
+  height: 0.5rem;
+  min-height: 0;
+}
+
+.editor-wrapper .ql-editor p:empty:not(:first-child) {
+  display: none;
+}
+
+/* Normalize spacing between elements in editor */
+.editor-wrapper .ql-editor > *:first-child {
+  margin-top: 0 !important;
+}
+
+.editor-wrapper .ql-editor > *:last-child {
+  margin-bottom: 0 !important;
 }
 
 .editor-wrapper .ql-toolbar {
@@ -1067,6 +1092,31 @@ td code {
 .section-editor .ql-editor {
   min-height: 200px;
   padding: 1rem;
+  line-height: 1.6;
+}
+
+/* Remove excessive spacing from empty paragraphs in section editor */
+.section-editor .ql-editor p {
+  margin: 0.5rem 0;
+}
+
+.section-editor .ql-editor p:empty {
+  margin: 0;
+  height: 0.5rem;
+  min-height: 0;
+}
+
+.section-editor .ql-editor p:empty:not(:first-child) {
+  display: none;
+}
+
+/* Normalize spacing between elements in section editor */
+.section-editor .ql-editor > *:first-child {
+  margin-top: 0 !important;
+}
+
+.section-editor .ql-editor > *:last-child {
+  margin-bottom: 0 !important;
 }
 
 .section-editor .ql-toolbar {

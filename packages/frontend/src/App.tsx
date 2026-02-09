@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import Layout from './components/admin/Layout'
 import GoogleTag from './components/GoogleTag'
@@ -47,6 +48,7 @@ function App() {
                 </Suspense>
               </main>
               <Footer />
+              <WhatsAppButton />
             </div>
           } />
 
